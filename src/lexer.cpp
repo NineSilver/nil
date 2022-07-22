@@ -1,4 +1,5 @@
 #include "lexer.h"
+#include "tokens.h"
 
 #include <iostream>
 #include <vector>
@@ -6,47 +7,47 @@
 
 namespace lexer 
 {
-    std::unordered_map<char, std::string> symbols{
-        {'=', "TT_ASSIGN"},
-        {'+', "TT_PLUS"},
-        {'-', "TT_MINUS"},
-        {'*', "TT_MULTIPLY"},
-        {'/', "TT_DIVIDE"},
-        {'>', "TT_GT"},
-        {'<', "TT_LT"},
-        {'(', "TT_LPAREN"},
-        {')', "TT_RPAREN"},
-        {'[', "TT_LBRACK"},
-        {']', "TT_RBRACK"},
-        {'{', "TT_LBRACE"},
-        {'}', "TT_RBRACE"},
-        {':', "TT_COLON"},
-        {';', "TT_SEMICOLON"},
-        {',', "TT_COMMA"},
-        {'.', "TT_DOT"},
+    std::unordered_map<char, Tok> symbols{
+        {'=', { TokKind::Assign, "="}},
+        {'+', { TokKind::Plus, "+"}},
+        {'-', { TokKind::Minus, "-"}},
+        {'*', { TokKind::Multiply, "*"}},
+        {'/', { TokKind::Divide, "/"}},
+        {'>', { TokKind::Gt, ">"}},
+        {'<', { TokKind::Lt, "<"}},
+        {'(', { TokKind::LParen, "("}},
+        {')', { TokKind::RParen, ")"}},
+        {'[', { TokKind::LBrack, "["}},
+        {']', { TokKind::RBrack, "]"}},
+        {'{', { TokKind::LBrace, "{"}},
+        {'}', { TokKind::RBrace, "}"}},
+        {':', { TokKind::Colon, ":"}},
+        {';', { TokKind::SemiColon, ";"}},
+        {',', { TokKind::Comma, ","}},
+        {'.', { TokKind::Dot, "."}},
     };
 
-    std::unordered_map<std::string, std::string> keywords{
-        {"var", "TT_VAR"},
-        {"let", "TT_LET"},
-        {"const", "TT_CONST"},
-        {"i8", "TT_I8"},
-        {"i16", "TT_I16"},
-        {"i32", "TT_I32"},
-        {"i64", "TT_I64"},
-        {"u8", "TT_U8"},
-        {"u16", "TT_U16"},
-        {"u32", "TT_U32"},
-        {"u64", "TT_U64"},
-        {"f32", "TT_F32"},
-        {"f64", "TT_F64"},
-        {"bool", "TT_BOOL"},
-        {"string", "TT_STRING"},
+    std::unordered_map<std::string, Tok> keywords{
+        {"var", { TokKind::Var, "var"}},
+        {"let", { TokKind::Let, "let"}},
+        {"const", { TokKind::Const, "const"}},
+        {"i8", { TokKind::I8, "i8"}},
+        {"i16", { TokKind::I16, "i16"}},
+        {"i32", { TokKind::I32, "i32"}},
+        {"i64", { TokKind::I64, "i64"}},
+        {"u8", { TokKind::U8, "u8"}},
+        {"u16", { TokKind::U16, "u16"}},
+        {"u32", { TokKind::U32, "u32"}},
+        {"u64", { TokKind::U64, "u64"}},
+        {"f32", { TokKind::F32, "f32"}},
+        {"f64", { TokKind::F64, "f64"}},
+        {"bool", { TokKind::Bool, "bool"}},
+        {"string", { TokKind::String, "string"}},
     };
 
-    std::vector<std::string> lex(std::string src) 
+    std::vector<Tok> lex(std::string src) 
     {
-        std::vector<std::string> tokens = {};
+        std::vector<Tok> tokens = {};
 
         for (int i = 0; i < src.size(); i++) {
             if (!isalnum(src[i])) {
@@ -64,14 +65,14 @@ namespace lexer
                 if (keywords.find(buf) != keywords.end()) {
                     tokens.push_back(keywords[buf]);
                 } else {
-                    tokens.push_back(buf);
+                    tokens.push_back(Tok{ TokKind::Identifier, buf});
                 }
             }
         }
 
         // Print out the tokens
-        for (std::string& i : tokens) {
-            std::cout << i << '\n';
+        for (Tok& i : tokens) {
+            std::cout << i.kind << '\n';
         }
 
         symbols.clear();

@@ -1,9 +1,10 @@
 #pragma once
 
+#include "tokens.h"
 #include <vector>
 #include <string>
 
 namespace lexer
 {
-    std::vector<std::string> lex(std::string src);
+    std::vector<Tok> lex(std::string src);
 }
