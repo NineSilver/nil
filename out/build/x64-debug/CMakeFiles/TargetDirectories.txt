@@ -1,0 +1,5 @@
+C:/Users/amrix/Desktop/nil/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/Users/amrix/Desktop/nil/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/amrix/Desktop/nil/out/build/x64-debug/nil/CMakeFiles/nil.dir
+C:/Users/amrix/Desktop/nil/out/build/x64-debug/nil/CMakeFiles/edit_cache.dir
+C:/Users/amrix/Desktop/nil/out/build/x64-debug/nil/CMakeFiles/rebuild_cache.dir
