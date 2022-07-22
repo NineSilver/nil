@@ -13,13 +13,14 @@ u64     - Unsigned 64 bit integer
 bool    - Boolean
 string  - String
 ```
+<br>
 
 ## Variables
-Structure of a variable
+Structure of a variable:
 ```
 [var/let/const] [name]: [type] = [data];
 ```
-Difference
+Difference:
 ```
 var    - Mutable
 let    - Immutable
