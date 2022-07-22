@@ -26,3 +26,23 @@ var    - Mutable
 let    - Immutable
 const  - Constant
 ```
+Example:
+```
+```
+<br>
+
+## Functions
+Structure of a function:
+```
+fn [name][generics]([args]) -> [return] {}
+```
+Example:
+```
+fn test<T>(i: T) -> T {
+    return i;
+}
+
+fn main() -> i8 {
+    return 0;
+}
+```
