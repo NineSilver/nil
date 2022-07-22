@@ -39,15 +39,15 @@ const x: bool = false;
 ## Functions
 Structure of a function:
 ```
-fn [name][generics]([args]) -> [return] {}
+func [name][generics]([args]) [return] {}
 ```
 Example:
 ```
-fn test<T>(i: T) -> T {
+func test<T>(i: T) T {
     return i;
 }
 
-fn main() -> i8 {
+func main() i8 {
     return 0;
 }
 ```
