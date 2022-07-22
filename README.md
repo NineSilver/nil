@@ -7,4 +7,4 @@ The [nil] Programming Language
 * [Contributing](CONTRIBUTING.md)
 
 ## Plans
-* Write in C++
+* text
