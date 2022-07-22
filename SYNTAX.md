@@ -28,6 +28,9 @@ const  - Constant
 ```
 Example:
 ```
+var i: u64 = 0;
+let j: i16 = 123;
+const x: bool = false;
 ```
 <br>
 
