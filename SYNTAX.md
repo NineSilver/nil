@@ -10,6 +10,8 @@ u8      - Unsigned 8 bit integer
 u16     - Unsigned 16 bit integer
 u32     - Unsigned 32 bit integer
 u64     - Unsigned 64 bit integer
+f32     - 32 bit floating point
+f64     - 64 bit floating point
 bool    - Boolean
 string  - String
 ```
