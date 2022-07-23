@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-namespace lexer
+namespace Lexer
 {
     std::vector<Tok> lex(std::string src);
 }

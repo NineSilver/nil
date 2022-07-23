@@ -5,7 +5,7 @@
 #include <vector>
 #include <unordered_map>
 
-namespace lexer 
+namespace Lexer 
 {
     std::unordered_map<char, Tok> symbols{
         {'=', { TokKind::Assign, "="}},
@@ -54,13 +54,21 @@ namespace lexer
                 if (symbols.find(src[i]) != symbols.end()) {
                     tokens.push_back(symbols[src[i]]);
                 }
+            } else if (src[i] == '\"') {
+                i++;
+                std::string buf = "";
+                while (src[i] != '\"') {
+                    buf += src[i];
+                    i++;
+                } i--;
+
+                tokens.push_back(Tok{ TokKind::String, buf });
             } else {
                 std::string buf = "";
                 while (isalnum(src[i])) {
                     buf += src[i];
                     i++;
-                }
-                i--;
+                } i--;
 
                 if (keywords.find(buf) != keywords.end()) {
                     tokens.push_back(keywords[buf]);
