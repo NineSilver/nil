@@ -1,6 +1,5 @@
-#include "lexer.h"
-#include "parser.h"
-#include "ast.h"
+#include "lexer/lexer.h"
+#include "parser/parser.h"
 
 #include <iostream>
 #include <fstream>
@@ -12,7 +11,7 @@ int main(int argc, char** argv)
         std::fstream file(argv[1]);
         std::string line;
         while (std::getline(file, line)) {
-            Lexer::lex(line);
+            Parser::parse(Lexer::lex(line));
         }
         return 0;
     } else {
