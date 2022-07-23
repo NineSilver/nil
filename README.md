@@ -1,5 +1,5 @@
 # [nil]
-The [nil] Programming Language
+The [nil] Programming Language is barely even able to codegen currently.
 <br>
 
 ## Links
