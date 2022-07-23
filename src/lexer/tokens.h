@@ -5,6 +5,10 @@
 enum TokKind
 {
     Identifier,
+    Number,
+    StringD,
+
+    Func,
 
     Var,
     Let,
@@ -21,7 +25,7 @@ enum TokKind
     F32,
     F64,
     Bool,
-    String,
+    StringT,
 
     Assign,
     Plus,

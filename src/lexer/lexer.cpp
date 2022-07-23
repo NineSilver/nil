@@ -28,6 +28,7 @@ namespace Lexer
     };
 
     std::unordered_map<std::string, Tok> keywords{
+        {"func", { TokKind::Func, "func"}},
         {"var", { TokKind::Var, "var"}},
         {"let", { TokKind::Let, "let"}},
         {"const", { TokKind::Const, "const"}},
@@ -42,8 +43,13 @@ namespace Lexer
         {"f32", { TokKind::F32, "f32"}},
         {"f64", { TokKind::F64, "f64"}},
         {"bool", { TokKind::Bool, "bool"}},
-        {"string", { TokKind::String, "string"}},
+        {"string", { TokKind::StringT, "string"}},
     };
+
+    static inline bool is_ident(char c)
+    {
+        return isalpha(c) || c == '_' || c == '$';
+    }
 
     std::vector<Tok> lex(std::string src) 
     {
@@ -58,29 +64,38 @@ namespace Lexer
                 i++;
                 std::string buf = "";
                 while (src[i] != '\"') {
-                    buf += src[i];
-                    i++;
+                    buf += src[i++];
                 } i--;
 
-                tokens.push_back(Tok{ TokKind::String, buf });
+                tokens.push_back(Tok{ TokKind::StringD, buf });
             } else {
-                std::string buf = "";
-                while (isalnum(src[i])) {
-                    buf += src[i];
-                    i++;
-                } i--;
+                if (isdigit(src[i])) {
+                    std::string buf = "";
+                    while (isdigit(src[i])) {
+                        buf += src[i++];
+                    } i--;
+                    
+                    tokens.push_back(Tok{ TokKind::Number, buf});
+                } else if (is_ident(src[i])) {
+                    std::string buf = "";
+                    while (is_ident(src[i]) || isdigit(src[i])) {
+                        buf += src[i++];
+                    } i--;
 
-                if (keywords.find(buf) != keywords.end()) {
-                    tokens.push_back(keywords[buf]);
+                    if (keywords.find(buf) != keywords.end()) {
+                        tokens.push_back(keywords[buf]);
+                    } else {
+                        tokens.push_back(Tok{ TokKind::Identifier, buf});
+                    }
                 } else {
-                    tokens.push_back(Tok{ TokKind::Identifier, buf});
+                    std::cerr << "Unknown character " << src[i++] << '\n';
                 }
             }
         }
 
         // Print out the tokens
         for (Tok& i : tokens) {
-            std::cout << i.kind << '\n';
+            std::cout << i.literal << ' ' << i.kind << '\n';
         }
 
         symbols.clear();
