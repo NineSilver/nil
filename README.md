@@ -1,4 +1,4 @@
-# nil
+# [nil]
 The [nil] Programming Language
 
 ## Links
