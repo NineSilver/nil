@@ -1,7 +1,7 @@
 # Contributing rules
 
 ## Functions, Classes, Structs must be formatted like this
-```c
+```c++
 int test()
 {
     return 0;
